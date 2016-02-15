@@ -30,7 +30,11 @@ public class AdvancedCustomArrayAdapter extends ArrayAdapter<String>{
         this.presidents = presidents;
         this.imageIds = imageIds;
         Firebase.setAndroidContext(getContext());
+        //following line caches the datasnapshot from firebase on ur app so everytime u reopen the app there is no delay in loading
+        Firebase.getDefaultConfig().setPersistenceEnabled(true);
         myFirebaseRef = new Firebase("https://bbsrstudyjam.firebaseio.com/");
+        //This lines keeps the local copy synched with the remote copy in firebase
+        myFirebaseRef.keepSynced(true);
 
 
 
