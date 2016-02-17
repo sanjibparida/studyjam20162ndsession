@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.squareup.picasso.Picasso;
@@ -20,7 +19,7 @@ public class AdvancedCustomArrayAdapter extends ArrayAdapter<String>{
     private final String[] presidents;
     private final Integer[] imageIds;
     public  DataSnapshot snapshot1;
-    public Firebase myFirebaseRef;
+
 
 
     public AdvancedCustomArrayAdapter(
@@ -29,12 +28,13 @@ public class AdvancedCustomArrayAdapter extends ArrayAdapter<String>{
         this.context = context;
         this.presidents = presidents;
         this.imageIds = imageIds;
-        Firebase.setAndroidContext(getContext());
+        //Firebase.setAndroidContext(getContext());
         //following line caches the datasnapshot from firebase on ur app so everytime u reopen the app there is no delay in loading
-        Firebase.getDefaultConfig().setPersistenceEnabled(true);
-        myFirebaseRef = new Firebase("https://bbsrstudyjam.firebaseio.com/");
+        //Firebase.getDefaultConfig().setPersistenceEnabled(true);
+        //myFirebaseRef = new Firebase("https://bbsrstudyjam.firebaseio.com/");
         //This lines keeps the local copy synched with the remote copy in firebase
-        myFirebaseRef.keepSynced(true);
+        //myFirebaseRef.keepSynced(true);
+
 
 
 
@@ -96,7 +96,7 @@ public class AdvancedCustomArrayAdapter extends ArrayAdapter<String>{
 
         //---customize the content of each row based on position---
         //Added reference to our firebase object- displaying the data from our firebase project
-       myFirebaseRef.addValueEventListener( new ValueEventListener() {
+        LoginActivity.myFirebaseRef.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
